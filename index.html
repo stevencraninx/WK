@@ -66,7 +66,17 @@
                 display: none !important; /* Verbergt het element volledig */
             }
         }
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Scroll horizontaal indien nodig */
+            -webkit-overflow-scrolling: touch; /* Betere scrollervaring op mobiel */
+        }
 
+        table {
+            width: 100%; /* Zorgt ervoor dat de tabel zich aanpast */
+            min-width: 600px; /* Zorgt ervoor dat de tabel niet te smal wordt */
+            border-collapse: collapse;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +86,7 @@
 <li data-time='17:20' class='ice-res'><span class='time'>17:20</span> End</li>
 <li data-time='16:59'><span class='time'>16:59</span> Men 5000 Semifinals<h3>2</h3>
 <p style='font-style: italic; color: #555;'>Qualification: No qualification information found</p>
+<div class='table-container'>
 <table border='1'>
 <tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Relay Team</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
 <tr><td></td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">602</td><td>Canada</td><td>CAN</td><td></td><td class="hide-on-small"></td><td></td></tr>
@@ -83,6 +94,7 @@
 <tr><td></td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">603</td><td>China</td><td>CHN</td><td></td><td class="hide-on-small"></td><td></td></tr>
 <tr><td></td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">605</td><td>Hungary</td><td>HUN</td><td></td><td class="hide-on-small"></td><td></td></tr>
 </table>
+</div>
 </li>
 <li data-time='16:32'><span class='time'>16:32</span> Women 3000 Finals</li>
 <li data-time='16:17' class='ice-res'><span class='time'>16:17</span> Ice Res</li>
@@ -100,6 +112,7 @@
 <li data-time='12:06'><span class='time'>12:06</span> ice res + Break None None</li>
 <li data-time='11:54'><span class='time'>11:54</span> Mixed Team Relay Team Semifinals<h3>2</h3>
 <p style='font-style: italic; color: #555;'>Qualification: No qualification information found</p>
+<div class='table-container'>
 <table border='1'>
 <tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Relay Team</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
 <tr><td></td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">402</td><td>Canada</td><td>CAN</td><td></td><td class="hide-on-small"></td><td></td></tr>
@@ -107,11 +120,13 @@
 <tr><td></td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">412</td><td>Poland</td><td>POL</td><td></td><td class="hide-on-small"></td><td></td></tr>
 <tr style='background-color: #ffeb3b; font-weight: bold;'><td></td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">401</td><td>Belgium</td><td>BEL</td><td></td><td class="hide-on-small"></td><td></td></tr>
 </table>
+</div>
 </li>
 <li data-time='11:43'><span class='time'>11:43</span> Men 500 Rep. Semifinals</li>
 <li data-time='11:28' class='ice-res'><span class='time'>11:28</span> Ice Res</li>
 <li data-time='11:04'><span class='time'>11:04</span> Men 500 Rep. Quarterfinals<h3>8</h3>
 <p style='font-style: italic; color: #555;'>Qualification: 1 + 2*2</p>
+<div class='table-container'>
 <table border='1'>
 <tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
 <tr><td></td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">36</td><td>COREY Brendan</td><td>AUS</td><td></td><td class="hide-on-small"></td><td></td></tr>
@@ -121,12 +136,14 @@
 <tr><td></td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">79</td><td>ROSS-WADDELL Kyle</td><td>GBR</td><td></td><td class="hide-on-small"></td><td></td></tr>
 <tr><td></td><td>6</td><td class="hide-on-small"></td><td class="hide-on-small">93</td><td>WOLFGANG Matthias</td><td>AUT</td><td></td><td class="hide-on-small"></td><td></td></tr>
 </table>
+</div>
 </li>
 <li data-time='10:56'><span class='time'>10:56</span> Women 1000 Rep. Semifinals</li>
 <li data-time='10:41' class='ice-res'><span class='time'>10:41</span> Ice Res</li>
 <li data-time='10:31'><span class='time'>10:31</span> Men 1500 Rep. Semifinals</li>
 <li data-time='10:15'><span class='time'>10:15</span> Women 1000 Rep. Quarterfinals<h3>1</h3>
 <p style='font-style: italic; color: #555;'>Qualification: 1,2 + 2*3</p>
+<div class='table-container'>
 <table border='1'>
 <tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
 <tr><td></td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">54</td><td>ASCIC Valentina</td><td>CRO</td><td></td><td class="hide-on-small"></td><td></td></tr>
@@ -135,9 +152,11 @@
 <tr style='background-color: #ffeb3b; font-weight: bold;'><td></td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">60</td><td>den DULK Tineke</td><td>BEL</td><td></td><td class="hide-on-small"></td><td></td></tr>
 <tr><td></td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">101</td><td>REPETSKA Svitlana</td><td>UKR</td><td></td><td class="hide-on-small"></td><td></td></tr>
 </table>
+</div>
 </li>
 <li data-time='09:45'><span class='time'>09:45</span> Men 1500 Rep. Quarterfinals<h3>4</h3>
 <p style='font-style: italic; color: #555;'>Qualification: 1,2 + 2*3</p>
+<div class='table-container'>
 <table border='1'>
 <tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
 <tr><td></td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">90</td><td>LOU Zhanshuo</td><td>HKG</td><td></td><td class="hide-on-small"></td><td></td></tr>
@@ -148,8 +167,10 @@
 <tr><td></td><td>6</td><td class="hide-on-small"></td><td class="hide-on-small">119</td><td>SUI Xin</td><td>HKG</td><td></td><td class="hide-on-small"></td><td></td></tr>
 <tr><td></td><td>7</td><td class="hide-on-small"></td><td class="hide-on-small">52</td><td>KAZHGALI Nurtilek</td><td>KAZ</td><td></td><td class="hide-on-small"></td><td></td></tr>
 </table>
+</div>
 <h3>5</h3>
 <p style='font-style: italic; color: #555;'>Qualification: 1,2 + 2*3</p>
+<div class='table-container'>
 <table border='1'>
 <tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
 <tr><td></td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">58</td><td>JASZAPATI Peter</td><td>HUN</td><td></td><td class="hide-on-small"></td><td></td></tr>
@@ -159,6 +180,7 @@
 <tr><td></td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">54</td><td>HOWARD Marcus</td><td>USA</td><td></td><td class="hide-on-small"></td><td></td></tr>
 <tr><td></td><td>6</td><td class="hide-on-small"></td><td class="hide-on-small">176</td><td>MORET Raphael</td><td>SUI</td><td></td><td class="hide-on-small"></td><td></td></tr>
 </table>
+</div>
 </li>
 
         </ul>
