@@ -61,6 +61,12 @@
         .hidden {
             display: none;
         }
+        @media (max-width: 768px) { /* Past de stijl toe op schermen kleiner dan 768px (tablets en kleiner) */
+            .hide-on-small {
+                display: none !important; /* Verbergt het element volledig */
+            }
+        }
+
     </style>
 </head>
 <body>
