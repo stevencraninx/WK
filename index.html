@@ -77,6 +77,16 @@
             min-width: 600px; /* Zorgt ervoor dat de tabel niet te smal wordt */
             border-collapse: collapse;
         }
+        .current-event {
+            border: 3px solid red !important; /* Dikkere rode rand om het event te markeren */
+            box-shadow: 0px 0px 10px red; /* Glow-effect voor extra zichtbaarheid */
+            animation: blink-border 1s infinite alternate; /* Optioneel knipperend effect */
+        }
+
+        @keyframes blink-border {
+            from { border-color: red; }
+            to { border-color: darkred; }
+        }
     </style>
 </head>
 <body>
@@ -210,5 +220,37 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentTime = new Date();
+            const scheduleItems = document.querySelectorAll("li");
+
+            let currentEvent = null;
+            let smallestTimeDifference = Infinity;
+
+            scheduleItems.forEach(item => {
+                const eventTime = item.getAttribute("data-time");
+                if (eventTime) {
+                    const [hours, minutes] = eventTime.split(":").map(Number);
+                    const eventDate = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), hours, minutes);
+
+                    // Bepaal hoeveel minuten het event verwijderd is van de huidige tijd
+                    const timeDifference = eventDate - currentTime;
+
+                    // Als het event momenteel bezig is of net begonnen is
+                    if (timeDifference <= 0 && Math.abs(timeDifference) < smallestTimeDifference) {
+                        smallestTimeDifference = Math.abs(timeDifference);
+                        currentEvent = item;
+                    }
+                }
+            });
+
+            // Voeg de 'current-event' klasse toe aan het meest relevante event
+            if (currentEvent) {
+                currentEvent.classList.add("current-event");
+            }
+        });
+    </script>
+
 </body>
 </html>
