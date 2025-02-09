@@ -1,326 +1,73 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Schedule</title>
+    <title>Wachtpagina</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            background: #e7e7ef;
-        }
-        .time {
-            font-weight: bold;
-            color: #555;
-        }
-        .ice-res {
-            background: #f0f8ff;
-            font-style: italic;
-            color: #333;
-        }
-        table {
-            width: 100%;
-            margin-top: 10px;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f9;
-        }
-        .hidden {
-            display: none;
-        }
-        @media (max-width: 768px) { /* Past de stijl toe op schermen kleiner dan 768px (tablets en kleiner) */
-            .hide-on-small {
-                display: none !important; /* Verbergt het element volledig */
-            }
-        }
-        .table-container {
-            width: 100%;
-            overflow-x: auto; /* Scroll horizontaal indien nodig */
-            -webkit-overflow-scrolling: touch; /* Betere scrollervaring op mobiel */
-        }
+       body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 0;
+           text-align: center;
+           color: white;
+           background: url('bel-ice-bears.png') no-repeat center center/cover;
+           height: 100vh;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+       }
+       .overlay {
+           background: rgba(0, 0, 0, 0.6);
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+       }
+       .content {
+           position: relative;
+           z-index: 1;
+           margin-top: 50px;
+       }
+       h1 {
+           font-size: 48px;
+           margin-bottom: 20px;
+       }
+       #countdown {
+           font-size: 36px;
+           margin-top: 10px;
+       }
+   </style>
+    <script>
+        function countdown() {
+            const endDate = new Date("Feb 14, 2025 09:00:00").getTime();
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = endDate - now;
 
-        table {
-            width: 100%; /* Zorgt ervoor dat de tabel zich aanpast */
-            min-width: 600px; /* Zorgt ervoor dat de tabel niet te smal wordt */
-            border-collapse: collapse;
-        }
-        .current-event {
-            border: 3px solid red !important; /* Dikkere rode rand om het event te markeren */
-            box-shadow: 0px 0px 10px red; /* Glow-effect voor extra zichtbaarheid */
-            animation: blink-border 1s infinite alternate; /* Optioneel knipperend effect */
-        }
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        @keyframes blink-border {
-            from { border-color: red; }
-            to { border-color: darkred; }
+                document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById("countdown").innerHTML = "De tijd is verstreken!";
+                }
+            }, 1000);
         }
-    </style>
+        window.onload = countdown;
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Event Schedule</h1>
-        <ul>
-<li data-time='17:04' class='ice-res'><span class='time'>17:04</span> End</li>
-<li data-time='16:35'><span class='time'>16:35</span> Men 5000 Finals<h3>A</h3>
-<p style='font-style: italic; color: #555;'>Qualification: No qualification information found</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Relay Team</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">609</td><td>Netherlands</td><td>NED</td><td>6:55.717</td><td class="hide-on-small"></td><td></td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>2</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">601</td><td>Belgium</td><td>BEL</td><td>6:57.088</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>3</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">606</td><td>Italy</td><td>ITA</td><td>6:57.991</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>4</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">602</td><td>Canada</td><td>CAN</td><td>7:00.017</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='16:19'><span class='time'>16:19</span> Women 500 Finals<h3>B</h3>
-<p style='font-style: italic; color: #555;'>Qualification: No qualification information found</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>1</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">4</td><td>DESMET Hanne</td><td>BEL</td><td>43.911</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>2</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">10</td><td>BLAIS Danae</td><td>CAN</td><td>44.152</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>3</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">94</td><td>DELTRAP Zoe</td><td>NED</td><td>44.768</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='16:04' class='ice-res'><span class='time'>16:04</span> Ice Res</li>
-<li data-time='15:57'><span class='time'>15:57</span> Women 500 Semifinals<h3>2</h3>
-<p style='font-style: italic; color: #555;'>Qualification: 1,2 + 1*3</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">2</td><td>SANTOS-GRISWOLD Kristen</td><td>USA</td><td>43.400</td><td class="hide-on-small"></td><td>QA</td></tr>
-<tr><td>2</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">12</td><td>VELZEBOER Michelle</td><td>NED</td><td>43.500</td><td class="hide-on-small"></td><td>QA</td></tr>
-<tr><td>3</td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">10</td><td>BLAIS Danae</td><td>CAN</td><td>43.651</td><td class="hide-on-small"></td><td>QB</td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>4</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">4</td><td>DESMET Hanne</td><td>BEL</td><td>54.263</td><td class="hide-on-small"></td><td>QB</td></tr>
-<tr><td>YC</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">25</td><td>SIGHEL Arianna</td><td>ITA</td><td>YC</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='15:41'><span class='time'>15:41</span> Men 1000 Finals</li>
-<li data-time='15:26'><span class='time'>15:26</span> Women 500 Quarterfinals<h3>3</h3>
-<p style='font-style: italic; color: #555;'>Qualification: 1,2 + 2*3</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">12</td><td>VELZEBOER Michelle</td><td>NED</td><td>43.347</td><td class="hide-on-small"></td><td>Q</td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>2</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">4</td><td>DESMET Hanne</td><td>BEL</td><td>43.372</td><td class="hide-on-small"></td><td>Q</td></tr>
-<tr><td>3</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">54</td><td>ASCIC Valentina</td><td>CRO</td><td>43.712</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>4</td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">46</td><td>LEVEQUE Aurelie</td><td>FRA</td><td>43.953</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>5</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">43</td><td>TOPOLSKA Gabriela</td><td>POL</td><td>44.646</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='15:17'><span class='time'>15:17</span> Men 1000 Semifinals</li>
-<li data-time='15:02' class='ice-res'><span class='time'>15:02</span> Ice Res</li>
-<li data-time='14:41'><span class='time'>14:41</span> Women 1500 Finals<h3>A</h3>
-<p style='font-style: italic; color: #555;'>Qualification: No qualification information found</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>7</td><td class="hide-on-small"></td><td class="hide-on-small">9</td><td>SARAULT Courtney</td><td>CAN</td><td>2:27.388</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>2</td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">24</td><td>CONFORTOLA Elisa</td><td>ITA</td><td>2:27.406</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>3</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">5</td><td>STODDARD Corinne</td><td>USA</td><td>2:27.525</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>4</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">2</td><td>SANTOS-GRISWOLD Kristen</td><td>USA</td><td>2:27.565</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>5</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">3</td><td>VELZEBOER Xandra</td><td>NED</td><td>2:27.772</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>6</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">105</td><td>FONTANA Arianna</td><td>ITA</td><td>3:46.253</td><td class="hide-on-small"></td><td></td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>PEN</td><td>6</td><td class="hide-on-small"></td><td class="hide-on-small">4</td><td>DESMET Hanne</td><td>BEL</td><td>PEN</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='14:24'><span class='time'>14:24</span> Men 1000 Quarterfinals<h3>4</h3>
-<p style='font-style: italic; color: #555;'>Qualification: 1,2 + 2*3</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">13</td><td>van 'T WOUT Jens</td><td>NED</td><td>1:25.015</td><td class="hide-on-small"></td><td>Q</td></tr>
-<tr><td>2</td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">27</td><td>TREACY Niall</td><td>GBR</td><td>1:25.520</td><td class="hide-on-small"></td><td>Q</td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>3</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">8</td><td>DESMET Stijn</td><td>BEL</td><td>1:25.527</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>4</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">21</td><td>FERCOQ Quentin</td><td>FRA</td><td>1:25.557</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>5</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">67</td><td>WATANABE Keita</td><td>JPN</td><td>1:25.829</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='14:06'><span class='time'>14:06</span> Women 1500 Semifinals<h3>3</h3>
-<p style='font-style: italic; color: #555;'>Qualification: 1,2 + 1*3</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>1</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">4</td><td>DESMET Hanne</td><td>BEL</td><td>2:29.314</td><td class="hide-on-small"></td><td>QA</td></tr>
-<tr><td>2</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">9</td><td>SARAULT Courtney</td><td>CAN</td><td>2:29.506</td><td class="hide-on-small"></td><td>QA</td></tr>
-<tr><td>3</td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">86</td><td>JASZAPATI Petra</td><td>HUN</td><td>2:29.640</td><td class="hide-on-small"></td><td>QB</td></tr>
-<tr><td>4</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">12</td><td>VELZEBOER Michelle</td><td>NED</td><td>2:30.136</td><td class="hide-on-small"></td><td>QB</td></tr>
-<tr><td>5</td><td>7</td><td class="hide-on-small"></td><td class="hide-on-small">54</td><td>ASCIC Valentina</td><td>CRO</td><td>2:30.241</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>6</td><td>6</td><td class="hide-on-small"></td><td class="hide-on-small">37</td><td>HIRAI Ami</td><td>JPN</td><td>2:30.388</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>7</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">10</td><td>BLAIS Danae</td><td>CAN</td><td>2:41.810</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='13:51' class='ice-res'><span class='time'>13:51</span> Ice Res</li>
-<li data-time='13:32'><span class='time'>13:32</span> Mixed Team Relay Team Finals<h3>B</h3>
-<p style='font-style: italic; color: #555;'>Qualification: No qualification information found</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Relay Team</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>4</td><td class="hide-on-small">BOUTIN KimBRUNELLE FlorencePIERRE-GILLES JordanROUSSEL Felix</td><td class="hide-on-small">402</td><td>Canada</td><td>CAN</td><td>2:40.312</td><td class="hide-on-small"></td><td></td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>2</td><td>3</td><td class="hide-on-small">den DULK TinekeDESMET HanneDESMET StijnNOIRON Warre</td><td class="hide-on-small">401</td><td>Belgium</td><td>BEL</td><td>2:41.721</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>3</td><td>2</td><td class="hide-on-small">BACSKAI Sara LucaJASZAPATI PeterKONYA ZsofiaNOGRADI Bence</td><td class="hide-on-small">408</td><td>Hungary</td><td>HUN</td><td>2:41.837</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>4</td><td>1</td><td class="hide-on-small">LYU WanyuSONG JiaruiZHANG BohaoZHONG Yuchen</td><td class="hide-on-small">403</td><td>China</td><td>CHN</td><td>2:53.784</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='11:42'><span class='time'>11:42</span> ice res + Break None None</li>
-<li data-time='11:36'><span class='time'>11:36</span> Women 500 Rep. Semifinals</li>
-<li data-time='11:21' class='ice-res'><span class='time'>11:21</span> Ice Res</li>
-<li data-time='11:06'><span class='time'>11:06</span> Women 500 Rep. Quarterfinals<h3>5</h3>
-<p style='font-style: italic; color: #555;'>Qualification: 1 + 5*2</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">57</td><td>TAKAHASHI Hana</td><td>JPN</td><td>45.680</td><td class="hide-on-small"></td><td>Q</td></tr>
-<tr><td>2</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">58</td><td>SYDORKO Yelyzaveta</td><td>UKR</td><td>45.767</td><td class="hide-on-small"></td><td>q</td></tr>
-<tr><td>3</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">84</td><td>HOYLAND Holly</td><td>GBR</td><td>45.847</td><td class="hide-on-small"></td><td></td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>4</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">60</td><td>den DULK Tineke</td><td>BEL</td><td>no time</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='10:58'><span class='time'>10:58</span> Men 1000 Rep. Semifinals<h3>2</h3>
-<p style='font-style: italic; color: #555;'>Qualification: 1</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">131</td><td>KNEGT Sjinkie</td><td>NED</td><td>1:26.578</td><td class="hide-on-small"></td><td>Q</td></tr>
-<tr><td>2</td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">42</td><td>KIM Brandon</td><td>USA</td><td>1:26.693</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>3</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">90</td><td>LOU Zhanshuo</td><td>HKG</td><td>1:26.877</td><td class="hide-on-small"></td><td></td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>4</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">100</td><td>PETRE Ward</td><td>BEL</td><td>1:27.400</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>5</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">44</td><td>HAYASHI Kosei</td><td>JPN</td><td>no time</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='10:43' class='ice-res'><span class='time'>10:43</span> Ice Res</li>
-<li data-time='10:33'><span class='time'>10:33</span> Women 1500 Rep. Semifinals</li>
-<li data-time='10:05'><span class='time'>10:05</span> Men 1000 Rep. Quarterfinals<h3>2</h3>
-<p style='font-style: italic; color: #555;'>Qualification: 1 + 3*2</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">44</td><td>HAYASHI Kosei</td><td>JPN</td><td>1:27.015</td><td class="hide-on-small"></td><td>Q</td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>2</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">100</td><td>PETRE Ward</td><td>BEL</td><td>1:27.063</td><td class="hide-on-small"></td><td>q</td></tr>
-<tr><td>3</td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">52</td><td>KAZHGALI Nurtilek</td><td>KAZ</td><td>1:28.144</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>4</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">146</td><td>MOROZOV Yaroslav</td><td>UKR</td><td>1:28.283</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>5</td><td>6</td><td class="hide-on-small"></td><td class="hide-on-small">91</td><td>O BRIEN Liam</td><td>IRL</td><td>1:28.755</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>6</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">60</td><td>ANDERMANN Nico</td><td>AUT</td><td>1:56.273</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-<h3>3</h3>
-<p style='font-style: italic; color: #555;'>Qualification: 1 + 3*2</p>
-<div class='table-container'>
-<table border='1'>
-<tr><tr><th>Place</th><th>Start Pos.</th><th class="hide-on-small">Warn.</th><th class="hide-on-small">#</th><th>Name</th><th>ISU Member</th><th>Results</th><th class="hide-on-small"></th><th>Qual.</th></tr>
-<tr><td>1</td><td>1</td><td class="hide-on-small"></td><td class="hide-on-small">131</td><td>KNEGT Sjinkie</td><td>NED</td><td>1:28.314</td><td class="hide-on-small"></td><td>Q</td></tr>
-<tr style='background-color: #ffeb3b; font-weight: bold;'><td>2</td><td>2</td><td class="hide-on-small"></td><td class="hide-on-small">108</td><td>PROOST Enzo</td><td>BEL</td><td>1:28.478</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>3</td><td>3</td><td class="hide-on-small"></td><td class="hide-on-small">31</td><td>KUCZYNSKI Lukasz</td><td>POL</td><td>1:28.586</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>4</td><td>5</td><td class="hide-on-small"></td><td class="hide-on-small">115</td><td>MARTINIC Ivan</td><td>CRO</td><td>1:28.808</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>5</td><td>6</td><td class="hide-on-small"></td><td class="hide-on-small">136</td><td>RAMBOL ALME Tinius</td><td>NOR</td><td>1:29.216</td><td class="hide-on-small"></td><td></td></tr>
-<tr><td>6</td><td>4</td><td class="hide-on-small"></td><td class="hide-on-small">145</td><td>LEONTENKO Rostyslav</td><td>UKR</td><td>1:33.696</td><td class="hide-on-small"></td><td></td></tr>
-</table>
-</div>
-</li>
-<li data-time='09:45'><span class='time'>09:45</span> Women 1500 Rep. Quarterfinals</li>
-
-        </ul>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>We zijn binnenkort terug voor het</h1>
+        <h1>Olymisch test event in Milaan!</h1>
+        <div id="countdown"></div>
     </div>
-    <script>
-        // Reload the page every 4 minutes (240,000 milliseconds)
-        setInterval(function () {
-            location.reload();
-        }, 240000); // 4 minutes
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const currentTime = new Date();
-            const scheduleItems = document.querySelectorAll("li");
-
-            scheduleItems.forEach(item => {
-                const eventTime = item.getAttribute("data-time");
-                if (eventTime) {
-                    const [hours, minutes] = eventTime.split(":").map(Number);
-                    const eventDate = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), hours, minutes);
-
-                    // Check if the event is within the next 30 minutes
-                    const timeDifference = eventDate - currentTime;
-                    if (timeDifference > 30 * 60 * 1000) {
-                        //item.classList.add("hidden");
-                    }
-                }
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const currentTime = new Date();
-            const scheduleItems = document.querySelectorAll("li");
-
-            let currentEvent = null;
-            let smallestTimeDifference = Infinity;
-
-            scheduleItems.forEach(item => {
-                const eventTime = item.getAttribute("data-time");
-                if (eventTime) {
-                    const [hours, minutes] = eventTime.split(":").map(Number);
-                    const eventDate = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), hours, minutes);
-
-                    // Bepaal hoeveel minuten het event verwijderd is van de huidige tijd
-                    const timeDifference = eventDate - currentTime;
-
-                    // Als het event momenteel bezig is of net begonnen is
-                    if (timeDifference <= 0 && Math.abs(timeDifference) < smallestTimeDifference) {
-                        smallestTimeDifference = Math.abs(timeDifference);
-                        currentEvent = item;
-                    }
-                }
-            });
-
-            // Voeg de 'current-event' klasse toe aan het meest relevante event
-            if (currentEvent) {
-                currentEvent.classList.add("current-event");
-            }
-        });
-    </script>
-
 </body>
 </html>
