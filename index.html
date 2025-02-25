@@ -281,25 +281,25 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const scheduleItems = document.querySelectorAll("li.event");
+            const scheduleItems = document.querySelectorAll("li[data-utc]"); // Pak alle items die een UTC-tijd hebben
 
             scheduleItems.forEach(item => {
                 const utcTime = item.getAttribute("data-utc");
                 if (utcTime) {
                     const [hours, minutes] = utcTime.split(":").map(Number);
 
-                    // Maak een UTC-tijd
-                    const utcDate = new Date();
-                    utcDate.setUTCHours(hours, minutes, 0, 0);
+                    // Maak een correcte UTC-tijd als volledige datum
+                    const utcDate = new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), hours, minutes));
 
-                    // Zet de UTC-tijd om naar de lokale tijd van de gebruiker
+                    // Zet de UTC-tijd om naar de tijdzone van de gebruiker
                     const localTime = new Intl.DateTimeFormat(undefined, {
                         hour: "2-digit",
                         minute: "2-digit",
+                        hour12: false, // Gebruik 24-uurs notatie
                         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
                     }).format(utcDate);
 
-                    // Update de weergave
+                    // Update de weergave in de HTML
                     const timeElement = item.querySelector(".time");
                     if (timeElement) {
                         timeElement.textContent = localTime;
@@ -308,6 +308,7 @@
             });
         });
     </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const currentTime = new Date();
