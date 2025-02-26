@@ -258,11 +258,7 @@
                     if (timeElement) {
                         timeElement.textContent = localTime;
                     }
-                    const dataTimeElement = item.getAttribute("data-time");
-                    console.log(dataTimeElement);
-                    if (dataTimeElement) {
-                        dataTimeElement.textContent = localTime;
-                    }
+                    item.setAttribute('data-time', localTime);
                 }
             });
         });
